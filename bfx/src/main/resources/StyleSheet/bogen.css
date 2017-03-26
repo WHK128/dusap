@@ -1,0 +1,10 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+#buttonPane, #AnmeldePainTop, #topPaneTeilnehmerliste, #topPaneTableView, #topPaneScoreEingabe {
+    -fx-background-color: lightsalmon;
+}

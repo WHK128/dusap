@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane id="TablePane" fx:id="TablePane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bogenfxml.TableViewController">
+    <stylesheets>
+        <URL value="@/StyleSheet/bogen.css" />
+    </stylesheets>
+    <center>
+      <VBox>
+         <children>
+            <HBox>
+               <children>
+                  <TextField id="suchfeld" fx:id="suchfeld" onAction="#handleSuchenAction" promptText="Suche">
+                     <HBox.margin>
+                        <Insets bottom="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+              <TableView id="tblTeilnehmer" fx:id="tblTeilnehmer" prefHeight="880.0">
+                  <columns>
+                      <TableColumn id="colVorname" fx:id="colVorname" prefWidth="150.0" text="Vorname" />
+                      <TableColumn id="colNachname" fx:id="colNachname" prefWidth="150.0" text="Nachname" />
+                      <TableColumn id="colVerein" fx:id="colVerein" prefWidth="84.0" text="Verein" />
+                  </columns>
+              </TableView>
+         </children>
+      </VBox>
+    </center>
+   <padding>
+      <Insets left="10.0" />
+   </padding>
+   <top>
+      <HBox id="topPaneTableView" fx:id="topPaneTableView" alignment="CENTER" prefHeight="50.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Liste aller Bogenschützen">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>
