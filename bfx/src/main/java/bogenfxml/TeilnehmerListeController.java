@@ -7,28 +7,20 @@ package bogenfxml;
 
 import Model.Anmeldedaten;
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -56,6 +48,10 @@ public class TeilnehmerListeController implements Initializable {
     private TableColumn<Anmeldedaten, Integer> colGeschlecht;
     @FXML
     private TableColumn<Anmeldedaten, Integer> colTage;
+    @FXML
+    private TableColumn<Anmeldedaten, Integer> colScoreTag1;
+    @FXML
+    private TableColumn<Anmeldedaten, Integer> colScoreTag2;
 
     ObservableList<Anmeldedaten> turnierAnmeldungen;
 
@@ -77,6 +73,8 @@ public class TeilnehmerListeController implements Initializable {
         colKlasse.setCellValueFactory(cellData -> cellData.getValue().klasseProperty().asObject());
         colGeschlecht.setCellValueFactory(cellData -> cellData.getValue().geschlechtProperty().asObject());
         colTage.setCellValueFactory(cellData -> cellData.getValue().tageProperty().asObject());
+        colScoreTag1.setCellValueFactory(cellData -> cellData.getValue().scoreTag1Property().asObject());
+        colScoreTag2.setCellValueFactory(cellData -> cellData.getValue().scoreTag2Property().asObject());
 
         colKlasse.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
             TableCell<Anmeldedaten, Integer> cell = new TableCell<Anmeldedaten, Integer>() {
@@ -95,6 +93,25 @@ public class TeilnehmerListeController implements Initializable {
                 public void updateItem(Integer item, boolean empty) {
                     if (item != null) {
                         setText(mn.getMd().getGeschlecht(item));
+                    }
+                }
+            };
+            return cell;
+        });
+        colScoreTag1.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
+            TableCell<Anmeldedaten, Integer> cell = new TableCell<Anmeldedaten, Integer>() {
+                TextField tf = new TextField();
+                @Override
+                public void updateItem(Integer item, boolean empty) {
+                    tf.setPromptText("Score");
+                    tf.setAlignment(Pos.CENTER_RIGHT);
+                    this.setGraphic(tf);
+                    if (item != null) {
+                        
+                                tf.setText(String.valueOf(item));
+                                tf.getText().matches("\b{Digit}");
+
+                        setText(null);
                     }
                 }
             };

@@ -99,7 +99,7 @@ public class EditViewController implements Initializable {
     }
 
     void initFields() {
-        plzModel = new PostleitzahlModel(cbPlzOrt, md);
+//        plzModel = new PostleitzahlModel(cbPlzOrt, md);
         klasseModel = new KlasseModel(cbKlasse, md);
         vereinModel = new VereinModel(cbVerein, md);
         
@@ -112,7 +112,7 @@ public class EditViewController implements Initializable {
         if (ad != null) {
             txtVorname.setText(ad.getVorname());
             txtNachname.setText(ad.getNachname());
-            plzModel.setSelected(ad.getPlz());
+//            plzModel.setSelected(ad.getPlz());
             klasseModel.setSelected(ad.getKlasse());
             vereinModel.setSelected(ad.getVerein());
 //            cbPlzOrt.getSelectionModel().select(ad.getPlz());
@@ -123,7 +123,7 @@ public class EditViewController implements Initializable {
         } else {
             txtVorname.setText("");
             txtNachname.setText("");
-            cbPlzOrt.getSelectionModel().select(0);
+//            cbPlzOrt.getSelectionModel().select(0);
             cbVerein.getSelectionModel().select(0);
             email.setText("");
             cbKlasse.getSelectionModel().select(0);
