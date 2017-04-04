@@ -116,7 +116,7 @@ public class ScoreEingabeController implements Initializable {
         if (ad != null) {
             txtVorname.setText(ad.getVorname());
             txtNachname.setText(ad.getNachname());
-            plzModel.setSelected(ad.getPlz());
+//            plzModel.setSelected(ad.getPlz());
             klasseModel.setSelected(ad.getKlasse());
             vereinModel.setSelected(ad.getVerein());
 //            cbPlzOrt.getSelectionModel().select(ad.getPlz());

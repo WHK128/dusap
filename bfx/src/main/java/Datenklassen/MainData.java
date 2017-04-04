@@ -6,6 +6,8 @@
 package Datenklassen;
 
 import Model.Anmeldedaten;
+import Queries.VeranstaltungenQueries;
+import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,6 +23,7 @@ public class MainData {
     ObservableList<Geschlecht> geschlechtList;
     ObservableList<Ort> plzList;
     ObservableList<Verein> vereineList;
+    Veranstaltung aktuelleVeranstaltung;
 
     public ObservableList<Verein> getVereineList() {
         return vereineList;
@@ -77,6 +80,10 @@ public class MainData {
                 -> o.getIDGeschlecht() == id
         );
         return kl.size() > 0 ? kl.get(0).getGeschlecht() : "";
+    }
+
+    public void getAktuelleVeranstaltung() throws SQLException {
+        VeranstaltungenQueries.getletzteVeranstaltung();
     }
 
 }

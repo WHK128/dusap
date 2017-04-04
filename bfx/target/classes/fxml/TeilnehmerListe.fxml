@@ -48,6 +48,8 @@
                         <TableColumn id="colKlasse" fx:id="colKlasse" prefWidth="75.0" text="Klasse" />
                         <TableColumn id="colGeschlecht" fx:id="colGeschlecht" prefWidth="100.0" text="Geschlecht" />
                         <TableColumn id="colTage" fx:id="colTage" prefWidth="75.0" text="Tage" />
+                  <TableColumn id="colScoreTag1" fx:id="colScoreTag1" prefWidth="100.0" text="Score Tag 1" />
+                  <TableColumn id="colScoreTag2" fx:id="colScoreTag2" prefWidth="100.0" text="Score Tag 2" />
                     </columns>
                 </TableView>
             </children>

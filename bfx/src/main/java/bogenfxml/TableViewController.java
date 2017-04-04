@@ -106,6 +106,8 @@ public class TableViewController implements Initializable {
                 if (selected != null) {
                     mainView.getEditViewController().showTeilnehmerDetails(selected);
                     if (!mainView.getTeilnehmerListeController().getTblTeilnehmerListe().getItems().contains(selected)) {
+                        // Die Idee ist sofort in die Datenbank tblTurnierteilnahme zu schreiben 
+                        // und den gleichen Satz auch in die getTurnierAnmeldungen zu schreiben
                         mainView.getTeilnehmerListeController().getTurnierAnmeldungen().add(selected);
                     }
                 }

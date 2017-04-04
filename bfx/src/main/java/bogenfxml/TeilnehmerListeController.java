@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -66,13 +67,25 @@ public class TeilnehmerListeController implements Initializable {
     void setMainView(MainViewController mn) {
         this.mn = mn;
     }
-
-    void initTable() {
+    /**
+    * 
+    * @param score 
+    * score ist der Parameter für die Score Spalten, ob sie angezeigt werden oder nicht
+    * 
+    */
+    void initTable(Boolean score) {
         colVorname.setCellValueFactory(cellData -> cellData.getValue().vornameProperty());
         colNachname.setCellValueFactory(cellData -> cellData.getValue().nachnameProperty());
         colKlasse.setCellValueFactory(cellData -> cellData.getValue().klasseProperty().asObject());
         colGeschlecht.setCellValueFactory(cellData -> cellData.getValue().geschlechtProperty().asObject());
         colTage.setCellValueFactory(cellData -> cellData.getValue().tageProperty().asObject());
+        
+        colScoreTag1.setVisible(false);
+        colScoreTag2.setVisible(false);
+        
+        if(score){
+        colScoreTag1.setVisible(true);
+        colScoreTag2.setVisible(true);
         colScoreTag1.setCellValueFactory(cellData -> cellData.getValue().scoreTag1Property().asObject());
         colScoreTag2.setCellValueFactory(cellData -> cellData.getValue().scoreTag2Property().asObject());
 
@@ -98,25 +111,53 @@ public class TeilnehmerListeController implements Initializable {
             };
             return cell;
         });
-        colScoreTag1.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
-            TableCell<Anmeldedaten, Integer> cell = new TableCell<Anmeldedaten, Integer>() {
-                TextField tf = new TextField();
-                @Override
-                public void updateItem(Integer item, boolean empty) {
-                    tf.setPromptText("Score");
-                    tf.setAlignment(Pos.CENTER_RIGHT);
-                    this.setGraphic(tf);
-                    if (item != null) {
-                        
-                                tf.setText(String.valueOf(item));
-                                tf.getText().matches("\b{Digit}");
+        Callback<TableColumn<Anmeldedaten, Integer>, TableCell<Anmeldedaten, Integer>> cellFactory
+                = (TableColumn<Anmeldedaten, Integer> param) -> new EditingCell();
 
-                        setText(null);
-                    }
-                }
-            };
-            return cell;
-        });
+        colScoreTag1.setCellFactory(cellFactory);
+        colScoreTag1.setOnEditCommit(
+                (TableColumn.CellEditEvent<Anmeldedaten, Integer> t) -> {
+                    ((Anmeldedaten) t.getTableView().getItems()
+                    .get(t.getTablePosition().getRow()))
+                    .setScoreTag1(t.getNewValue());
+                });
+        colScoreTag2.setCellFactory(cellFactory);
+        colScoreTag2.setOnEditCommit(
+                (TableColumn.CellEditEvent<Anmeldedaten, Integer> t) -> {
+                    ((Anmeldedaten) t.getTableView().getItems()
+                    .get(t.getTablePosition().getRow()))
+                    .setScoreTag1(t.getNewValue());
+                });
+
+//        colScoreTag1.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
+//            TableCell<Anmeldedaten, Integer> cell;
+//            cell = new TableCell<Anmeldedaten, Integer>() {
+//                TextField tf = new TextField();
+//
+//                @Override
+//                public void updateItem(Integer item, boolean empty) {
+//                    tf.setPromptText("Score");
+//                    tf.setAlignment(Pos.CENTER_RIGHT);
+//                    if(!empty){
+//                    this.setGraphic(tf);}
+//                    if (item != null) {
+//                        
+//                        setText(null);
+//                    }
+//                    tf.focusedProperty().addListener((ObservableValue<? extends Boolean> observable,
+//                        Boolean oldValue, Boolean newValue) -> {
+//                    if (!newValue) {
+//                        String s = String.valueOf(item);
+//                        if (s.matches("[0-9]*")) {
+//                            tf.setText(s);
+//                        }
+//                    }
+//                });
+//                }
+//            };
+//            return cell;
+//        });
+        }
         turnierAnmeldungen = FXCollections.observableArrayList();
         fillTable("");
     }
@@ -147,6 +188,120 @@ public class TeilnehmerListeController implements Initializable {
 //                }
 //            }
 //        });
+    }
+private String jahrZahl = "";
+    class EditingCell extends TableCell<Anmeldedaten, Integer> {
+
+        private TextField textField;
+
+        private EditingCell() {
+        
+
+        textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+                if (!newValue) {
+                    if (textField.getText().matches("[0-9]{4}")) {
+                        jahrZahl = textField.getText();
+                        // ins Objekt zurückschreiben
+//                        currentRow.getItem().setFabJahr(textField.getText());
+                    } else {
+//                        AlertHelper.startInfoAlert("FAB", "FAB 8-jährig gebundene Beträge", "Sie müssen eine 4-stellige Jaheszahl eingeben.");
+                        textField.requestFocus();
+                    }
+                }
+            });}
+//        @Override
+//        public void startEdit() {
+//            if (!isEmpty()) {
+//                super.startEdit();
+//                createTextField();
+//                setText(null);
+//                setGraphic(textField);
+//                textField.selectAll();
+//                textField.setPromptText("Score");
+//                textField.setAlignment(Pos.CENTER_RIGHT);
+//            }
+//        }
+
+//        @Override
+//        public void cancelEdit() {
+//            super.cancelEdit();
+//
+//            setText(validDigit(String.valueOf(getItem())));
+//            setGraphic(null);
+//        }
+// @Override
+//                public void updateItem(Integer item, boolean empty) {
+//                    tf.setPromptText("Score");
+//                    tf.setAlignment(Pos.CENTER_RIGHT);
+//                    if(!empty){
+//                    this.setGraphic(tf);}
+//                    if (item != null) {
+//                        
+//                        setText(null);
+//                    }
+//                    tf.focusedProperty().addListener((ObservableValue<? extends Boolean> observable,
+//                        Boolean oldValue, Boolean newValue) -> {
+//                    if (!newValue) {
+//                        String s = String.valueOf(item);
+//                        if (s.matches("[0-9]*")) {
+//                            tf.setText(s);
+//                        }
+//                    }
+//                });
+
+        @Override
+        public void updateItem(Integer item, boolean empty) {
+            super.updateItem(item, empty);
+            createTextField();
+            if (!empty) {
+//                setText(String.valueOf(item));
+//                setGraphic(null);
+//            } else {
+//                if (isEditing()) {
+//                if (textField != null) {
+//                    textField.setText(validDigit(getString()));
+////                        setGraphic(null);
+//                }
+                setText(null);
+                setGraphic(textField);
+//                } else {
+//                    setText(getString());
+//                    setGraphic(null);
+//                }
+            }
+
+//            textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable,
+//                    Boolean oldValue, Boolean newValue) -> {
+//                        if (!newValue) {
+//                            String s = String.valueOf(item);
+//                            if (s.matches("[0-9]*")) {
+//                                textField.setText(s);
+//                            }
+//                        }
+//                    });
+        }
+
+        private void createTextField() {
+            textField = new TextField();
+            textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+//            textField.setOnAction((e) -> commitEdit(Integer.valueOf(textField.getText())));
+            textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!newValue.equals("")) {
+                    textField.setText(validDigit(textField.getText()));
+                }
+            });
+        }
+
+        private String validDigit(String s) {
+            if (s.matches("[0-9]*")) {
+                return s;
+            }
+            return "";
+        }
+
+        private String getString() {
+            return getItem() == null ? "" : String.valueOf(getItem());
+        }
     }
 
     public TextField getSuchFeld() {

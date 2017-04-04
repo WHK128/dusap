@@ -75,18 +75,18 @@ public class MainViewController implements Initializable {
         Platform.runLater(() -> {
             setAnmeldeView();
             setListView();
-            setTeilnehmerListView();
+            setTeilnehmerListView(false);
         });
     }
 
     @FXML
     void handleScoreeingabeAction(ActionEvent event) {
         centerHBox.getChildren().clear();
-        
+         mainPain.setRight(null);
         loadTeilnehmerListView();
         loadScoreEingabeView();
         Platform.runLater(() -> {
-            setTeilnehmerListView();
+            setTeilnehmerListView(true);
             setScoreEingabeView();
         });
     }
@@ -146,9 +146,9 @@ public class MainViewController implements Initializable {
         }
     }
 
-    private void setTeilnehmerListView() {
+    private void setTeilnehmerListView(boolean score) {
         teilnehmerListeController.setMainView(this);
-        teilnehmerListeController.initTable();
+        teilnehmerListeController.initTable(score);
     }
 
     private void loadScoreEingabeView() {

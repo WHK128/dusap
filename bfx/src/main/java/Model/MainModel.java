@@ -27,6 +27,7 @@ public class MainModel {
         loadGeschlecht(md);
         loadPlz(md);
         loadVereine(md);
+        loadAktuelleVeranstaltung(md);
     }
 
     private void loadVereine(MainData md) {
@@ -67,6 +68,18 @@ public class MainModel {
         } catch (SQLException ex) {
             Logger.getLogger(MainModel.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void loadAktuelleVeranstaltung(MainData md){
+        try {
+            md.getAktuelleVeranstaltung();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void saveTurnierteilnahme(){
+        
     }
 
 }

@@ -8,8 +8,8 @@ bogenfxml\BogenFxml.class
 bogenfxml\FXMLDocumentController.class
 mySqlConnect\MySQLConnection.class
 bogenfxml\sqle.class
+Queries\TurnierteilnahmeQueries.class
 msSqlServerConnection\MsSqlServerConnection.class
-bogenfxml\TestController.class
 Queries\GeschlechtQueries.class
 bogenfxml\TeilnehmerListeController.class
 Datenklassen\Geschlecht.class
@@ -22,7 +22,9 @@ Datenklassen\Klasse.class
 Datenklassen\Ort.class
 Model\Anmeldedaten.class
 Utils\DateUtil.class
+Queries\VeranstaltungenQueries.class
 Queries\VereinQueries.class
+Datenklassen\ScoreEingabe.class
 Home\TeilnehmerHome.class
 Datenklassen\Turnierteilnahme.class
 bogenfxml\TeilnehmerListeController$1.class
@@ -35,7 +37,9 @@ Datenklassen\Verein.class
 bogenfxml\EditViewController.class
 Utils\SelectKeyComboBoxListener$1.class
 Utils\VereinModel.class
+bogenfxml\TeilnehmerListeController$EditingCell.class
 bogenfxml\VeranstaltungController.class
+Datenklassen\Score.class
 Model\MainModel.class
 Utils\PostleitzahlModel.class
 Queries\KlasseQueries.class

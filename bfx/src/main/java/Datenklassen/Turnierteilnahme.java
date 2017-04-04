@@ -11,13 +11,13 @@ package Datenklassen;
  */
 public class Turnierteilnahme {
 
-    private String IDTurnierteilnahme;
-    private String FKTeilnhemer;
-    private String FKGeschlecht;
-    private String FKKlasse;
-    private String FKVeranstaltung;
+    private int IDTurnierteilnahme;
+    private int FKTeilnhemer;
+    private int FKGeschlecht;
+    private int FKKlasse;
+    private int FKVeranstaltung;
 
-    public Turnierteilnahme(String IDTurnierteilnahme, String FKTeilnhemer, String FKGeschlecht, String FKKlasse, String FKVeranstaltung) {
+    public Turnierteilnahme(int IDTurnierteilnahme, int FKTeilnhemer, int FKGeschlecht, int FKKlasse, int FKVeranstaltung) {
         this.IDTurnierteilnahme = IDTurnierteilnahme;
         this.FKTeilnhemer = FKTeilnhemer;
         this.FKGeschlecht = FKGeschlecht;
@@ -25,43 +25,43 @@ public class Turnierteilnahme {
         this.FKVeranstaltung = FKVeranstaltung;
     }
 
-    public String getIDTurnierteilnahme() {
+    public int getIDTurnierteilnahme() {
         return IDTurnierteilnahme;
     }
 
-    public void setIDTurnierteilnahme(String IDTurnierteilnahme) {
+    public void setIDTurnierteilnahme(int IDTurnierteilnahme) {
         this.IDTurnierteilnahme = IDTurnierteilnahme;
     }
 
-    public String getFKTeilnhemer() {
+    public int getFKTeilnhemer() {
         return FKTeilnhemer;
     }
 
-    public void setFKTeilnhemer(String FKTeilnhemer) {
+    public void setFKTeilnhemer(int FKTeilnhemer) {
         this.FKTeilnhemer = FKTeilnhemer;
     }
 
-    public String getFKGeschlecht() {
+    public int getFKGeschlecht() {
         return FKGeschlecht;
     }
 
-    public void setFKGeschlecht(String FKGeschlecht) {
+    public void setFKGeschlecht(int FKGeschlecht) {
         this.FKGeschlecht = FKGeschlecht;
     }
 
-    public String getFKKlasse() {
+    public int getFKKlasse() {
         return FKKlasse;
     }
 
-    public void setFKKlasse(String FKKlasse) {
+    public void setFKKlasse(int FKKlasse) {
         this.FKKlasse = FKKlasse;
     }
 
-    public String getFKVeranstaltung() {
+    public int getFKVeranstaltung() {
         return FKVeranstaltung;
     }
 
-    public void setFKVeranstaltung(String FKVeranstaltung) {
+    public void setFKVeranstaltung(int FKVeranstaltung) {
         this.FKVeranstaltung = FKVeranstaltung;
     }
 }

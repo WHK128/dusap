@@ -66,10 +66,28 @@ public class MySQLConnection {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
         return null;
+    }
+    
+    // Das Update kann auch für Insert und Delete verwendet werden
+    public static void execUpdate(String statement) {
+        System.out.println(statement);
+        con = getInstance();
+        if (con != null) {
+            // Abfrage-Statement erzeugen.
+            Statement query;
+            try {
+                query = con.createStatement();
 
+                // Tabelle anzeigen
+                String sql = statement;
+
+                query.executeUpdate(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     //Gebe Tabelle in die Konsole aus

@@ -4,28 +4,28 @@
  * and open the template in the editor.
  */
 package Datenklassen;
-
+import java.util.Date;
 /**
  *
  * @author Werner
  */
 public class Veranstaltung {
 
-    private String IDVeranstaltung;
+    private int IDVeranstaltung;
     private String Veranstalung;
-    private String VeranstalungsDatum;
+    private Date VeranstalungsDatum;
 
-    public Veranstaltung(String IDVeranstaltung, String Veranstalung, String VeranstalungsDatum) {
+    public Veranstaltung(int IDVeranstaltung, String Veranstalung, Date VeranstalungsDatum) {
         this.IDVeranstaltung = IDVeranstaltung;
         this.Veranstalung = Veranstalung;
         this.VeranstalungsDatum = VeranstalungsDatum;
     }
 
-    public String getIDVeranstaltung() {
+    public int getIDVeranstaltung() {
         return IDVeranstaltung;
     }
 
-    public void setIDVeranstaltung(String IDVeranstaltung) {
+    public void setIDVeranstaltung(int IDVeranstaltung) {
         this.IDVeranstaltung = IDVeranstaltung;
     }
 
@@ -37,11 +37,11 @@ public class Veranstaltung {
         this.Veranstalung = Veranstalung;
     }
 
-    public String getVeranstalungsDatum() {
+    public Date getVeranstalungsDatum() {
         return VeranstalungsDatum;
     }
 
-    public void setVeranstalungsDatum(String VeranstalungsDatum) {
+    public void setVeranstalungsDatum(Date VeranstalungsDatum) {
         this.VeranstalungsDatum = VeranstalungsDatum;
     }
 }

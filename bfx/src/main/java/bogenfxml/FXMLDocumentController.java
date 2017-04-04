@@ -132,7 +132,7 @@ public class FXMLDocumentController {
         if (ad != null) {
             vorname.setText(ad.getVorname());
             nachname.setText(ad.getNachname());
-            plz.setText(String.valueOf(ad.getPlz()));
+//            plz.setText(String.valueOf(ad.getPlz()));
 //            ort.setText(ad.getOrt());
 //            verein.setText(ad.getVerein());
             email.setText(ad.getEmail());

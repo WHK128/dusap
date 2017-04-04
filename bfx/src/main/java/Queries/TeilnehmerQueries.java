@@ -22,7 +22,7 @@ public class TeilnehmerQueries {
         ObservableList<Anmeldedaten> results = FXCollections.observableArrayList();
         try {
             ResultSet rs = mySqlConnect.MySQLConnection.execQuery("SELECT IDTeilnehmer, "
-                    + "Vorname,  Nachname, Email, FKOrt, FKVerein, GebDatum, "
+                    + "Vorname,  Nachname, Email, FKVerein, GebDatum, "
                     + "FKGeschlecht, FKKlasse"
                     + " FROM tblTeilnehmer "
                     + "ORDER BY Nachname ASC, Vorname ASC, GebDatum ASC");
@@ -43,12 +43,12 @@ public class TeilnehmerQueries {
                         rs.getString("IDTeilnehmer") != null ? Integer.valueOf(rs.getString("IDTeilnehmer")) : 0,
                         rs.getString("Vorname") != null ? rs.getString("Vorname") : "",
                         rs.getString("Nachname") != null ? rs.getString("Nachname") : "",
-                        rs.getString("FKOrt") != null ? Integer.valueOf(rs.getString("FKOrt")) : 0,
                         rs.getString("Email") != null ? rs.getString("Email") : "",
                         rs.getDate("GebDatum") != null ? rs.getDate("GebDatum") : new Date(),
                         rs.getString("FKGeschlecht") != null ? Integer.valueOf(rs.getString("FKGeschlecht")) : 0,
                         rs.getString("FKKlasse") != null ? Integer.valueOf(rs.getString("FKKlasse")) : 0,
-                        rs.getString("FKVerein") != null ? Integer.valueOf(rs.getString("FKVerein")) : 0,0);
+                        rs.getString("FKVerein") != null ? Integer.valueOf(rs.getString("FKVerein")) : 0,0,
+                        0,0);
                 results.add(ad);
             }
         } catch (SQLException e) {

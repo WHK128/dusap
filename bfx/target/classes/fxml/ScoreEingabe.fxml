@@ -30,7 +30,7 @@
       </HBox>
    </top>
    <center>
-      <GridPane maxHeight="550.0" prefHeight="550.0" BorderPane.alignment="TOP_LEFT">
+      <GridPane maxHeight="490.0" prefHeight="490.0" BorderPane.alignment="TOP_LEFT">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
@@ -38,7 +38,7 @@
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
@@ -46,8 +46,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="50.0" valignment="BOTTOM" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="40.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -60,34 +58,31 @@
             <Label text="Vorname" />
             <TextField id="txtVorname" fx:id="txtVorname" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="7" />
             <TextField id="txtNachname" fx:id="txtNachname" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="1" />
-            <ComboBox id="cbVerein" fx:id="cbVerein" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="6" />
-            <TextField fx:id="email" prefHeight="25.0" prefWidth="261.0" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="7" />
+            <ComboBox id="cbVerein" fx:id="cbVerein" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="4" />
+            <TextField fx:id="email" prefHeight="25.0" prefWidth="261.0" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="5" />
             <Label text="Nachname" GridPane.rowIndex="1" />
-            <Label text="Plz/Ort" GridPane.rowIndex="4" />
-            <ComboBox id="cbPlzOrt" fx:id="cbPlzOrt" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="4" />
-            <Label text="Verein" GridPane.rowIndex="6" />
-            <Label text="Email" GridPane.rowIndex="7" />
-            <Label text="Klasse" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" />
-            <ComboBox id="cbKlasse" fx:id="cbKlasse" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="9" />
-            <RadioButton id="rdbEinTag" fx:id="rdbEinTag" mnemonicParsing="false" text="1 Tag" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="10">
+            <Label text="Verein" GridPane.rowIndex="4" />
+            <Label text="Email" GridPane.rowIndex="5" />
+            <Label text="Klasse" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+            <ComboBox id="cbKlasse" fx:id="cbKlasse" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="7" />
+            <RadioButton id="rdbEinTag" fx:id="rdbEinTag" mnemonicParsing="false" text="1 Tag" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8">
                <toggleGroup>
                   <ToggleGroup fx:id="tage" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton id="rdbZweiTage" fx:id="rdbZweiTage" mnemonicParsing="false" selected="true" text="2 Tage" toggleGroup="$tage" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="11" />
-            <RadioButton id="rdbKind" fx:id="rdbKind" mnemonicParsing="false" text="Kind" GridPane.rowIndex="11">
+            <RadioButton id="rdbZweiTage" fx:id="rdbZweiTage" mnemonicParsing="false" selected="true" text="2 Tage" toggleGroup="$tage" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="9" />
+            <RadioButton id="rdbKind" fx:id="rdbKind" mnemonicParsing="false" text="Kind" GridPane.rowIndex="9">
                <toggleGroup>
                   <ToggleGroup fx:id="geschlecht" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton id="rdbJugend" fx:id="rdbJugend" mnemonicParsing="false" text="Jugend" toggleGroup="$geschlecht" GridPane.rowIndex="10" />
-            <RadioButton id="rdbFrau" fx:id="rdbFrau" mnemonicParsing="false" text="Frau" toggleGroup="$geschlecht" GridPane.rowIndex="9" />
-            <RadioButton id="rdbMann" fx:id="rdbMann" mnemonicParsing="false" selected="true" text="Mann" toggleGroup="$geschlecht" GridPane.rowIndex="8" />
-            <HBox alignment="TOP_RIGHT" GridPane.columnSpan="8" GridPane.rowIndex="12">
+            <RadioButton id="rdbJugend" fx:id="rdbJugend" mnemonicParsing="false" text="Jugend" toggleGroup="$geschlecht" GridPane.rowIndex="8" />
+            <RadioButton id="rdbFrau" fx:id="rdbFrau" mnemonicParsing="false" text="Frau" toggleGroup="$geschlecht" GridPane.rowIndex="7" />
+            <RadioButton id="rdbMann" fx:id="rdbMann" mnemonicParsing="false" selected="true" text="Mann" toggleGroup="$geschlecht" GridPane.rowIndex="6" />
+            <HBox alignment="TOP_RIGHT" GridPane.columnSpan="8" GridPane.rowIndex="10">
                <children>
                   <Button id="btnSpeichern" fx:id="btnSpeichern" text="Speichern" />
                   <Button id="btnAbbrechen" fx:id="btnAbbrechen" text="Abbrechen" />
-                  <Button id="btnNeu" fx:id="btnNeu" text="Neu?" />
                </children>
             </HBox>
             <Label text="Score 1. Tag" GridPane.rowIndex="2" />
