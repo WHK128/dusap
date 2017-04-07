@@ -6,6 +6,12 @@
 package Queries;
 
 import Datenklassen.Turnierteilnahme;
+import Model.Anmeldedaten;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -20,9 +26,42 @@ public class TurnierteilnahmeQueries {
 //    private int FKVeranstaltung;
     public static void saveTurnierTeilnahme(Turnierteilnahme t) {
 
-        String statement = "INSERT INTO tblTurnierteilnahme (FKTeilnehmer, FKGeschlecht, FKKlasse, FKVeranstaltung)"
-                + "VALUES (" + t.getFKTeilnhemer() + ", " + t.getFKGeschlecht() + ", " + t.getFKKlasse() + ", " + t.getFKVeranstaltung() + ")";
+        String statement = "INSERT INTO tblTurnierteilnahme (FKTeilnehmer, FKVeranstaltung, FKGeschlecht, FKKlasse)"
+                + "VALUES (" + t.getFKTeilnhemer() + ", " + t.getFKVeranstaltung() + ", " + t.getFKKlasse() + ", " + t.getFKGeschlecht() + ")";
 
         mySqlConnect.MySQLConnection.execUpdate(statement);
     }
+
+    public static ObservableList<Anmeldedaten> getTurnierTeilnehmerListe(int veranstaltung) throws SQLException {
+        ObservableList<Anmeldedaten> results = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = mySqlConnect.MySQLConnection.execQuery("SELECT teil.IDTeilnehmer, turn.FKVeranstaltung, "
+                    + "turn.FKGeschlecht, turn.FKKlasse, teil.Vorname,  teil.Nachname, teil.Email, "
+                    + "teil.FKVerein, teil.GebDatum "
+                    + "FROM tblturnierteilnahme as turn "
+                    + "JOIN tblTeilnehmer as teil ON teil.IDTeilnehmer = turn.FKTeilnehmer"
+                    + "WHERE turn.FKVeranstaltung = " + veranstaltung
+                    + "ORDER BY teil.Nachname ASC, teil.Vorname ASC, teil.GebDatum ASC");
+            
+            while (rs.next()) {
+                Anmeldedaten ad = new Anmeldedaten(
+                        rs.getString("IDTeilnehmer") != null ? Integer.valueOf(rs.getString("IDTeilnehmer")) : 0,
+                        rs.getString("Vorname") != null ? rs.getString("Vorname") : "",
+                        rs.getString("Nachname") != null ? rs.getString("Nachname") : "",
+                        rs.getString("Email") != null ? rs.getString("Email") : "",
+                        rs.getDate("GebDatum") != null ? rs.getDate("GebDatum") : new Date(),
+                        rs.getString("FKGeschlecht") != null ? Integer.valueOf(rs.getString("FKGeschlecht")) : 0,
+                        rs.getString("FKKlasse") != null ? Integer.valueOf(rs.getString("FKKlasse")) : 0,
+                        rs.getString("FKVerein") != null ? Integer.valueOf(rs.getString("FKVerein")) : 0, 0,
+                        0, 0);
+                results.add(ad);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        // http://stackoverflow.com/questions/17576080/store-rows-of-resultset-in-array-of-strings
+
+        return results;
+    }
+
 }

@@ -11,26 +11,16 @@ package Datenklassen;
  */
 public class Turnierteilnahme {
 
-    private int IDTurnierteilnahme;
     private int FKTeilnhemer;
+    private int FKVeranstaltung;
     private int FKGeschlecht;
     private int FKKlasse;
-    private int FKVeranstaltung;
 
-    public Turnierteilnahme(int IDTurnierteilnahme, int FKTeilnhemer, int FKGeschlecht, int FKKlasse, int FKVeranstaltung) {
-        this.IDTurnierteilnahme = IDTurnierteilnahme;
+    public Turnierteilnahme(int FKTeilnhemer, int FKVeranstaltung, int FKGeschlecht, int FKKlasse) {
         this.FKTeilnhemer = FKTeilnhemer;
+        this.FKVeranstaltung = FKVeranstaltung;
         this.FKGeschlecht = FKGeschlecht;
         this.FKKlasse = FKKlasse;
-        this.FKVeranstaltung = FKVeranstaltung;
-    }
-
-    public int getIDTurnierteilnahme() {
-        return IDTurnierteilnahme;
-    }
-
-    public void setIDTurnierteilnahme(int IDTurnierteilnahme) {
-        this.IDTurnierteilnahme = IDTurnierteilnahme;
     }
 
     public int getFKTeilnhemer() {

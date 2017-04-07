@@ -11,7 +11,8 @@ package Datenklassen;
  */
 public class Score {
     
-    private int fkTurnierteilnahme;
+    private int FKTeilnhemer;
+    private int FKVeranstaltung;
     private int punkte;
     private int col10er;
     private int col8er;
@@ -21,21 +22,32 @@ public class Score {
     public Score() {
     }
 
-    public Score(int fkTurnierteilnahme, int punkte, int col10er, int col8er, int col5er) {
-        this.fkTurnierteilnahme = fkTurnierteilnahme;
+    public Score(int FKTeilnhemer, int FKVeranstaltung, int punkte, int col10er, int col8er, int col5er) {
+        this.FKTeilnhemer = FKTeilnhemer;
+        this.FKVeranstaltung = FKVeranstaltung;
         this.punkte = punkte;
         this.col10er = col10er;
         this.col8er = col8er;
         this.col5er = col5er;
     }
 
-    public int getFkTurnierteilnahme() {
-        return fkTurnierteilnahme;
+    public int getFKTeilnhemer() {
+        return FKTeilnhemer;
     }
 
-    public void setFkTurnierteilnahme(int fkTurnierteilnahme) {
-        this.fkTurnierteilnahme = fkTurnierteilnahme;
+    public void setFKTeilnhemer(int FKTeilnhemer) {
+        this.FKTeilnhemer = FKTeilnhemer;
     }
+
+    public int getFKVeranstaltung() {
+        return FKVeranstaltung;
+    }
+
+    public void setFKVeranstaltung(int FKVeranstaltung) {
+        this.FKVeranstaltung = FKVeranstaltung;
+    }
+
+   
 
     public int getPunkte() {
         return punkte;

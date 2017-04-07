@@ -5,6 +5,6 @@
 .mainFxmlClass {
 
 }
-#buttonPane, #AnmeldePainTop, #topPaneTeilnehmerliste, #topPaneTableView, #topPaneScoreEingabe {
+#buttonPane, #AnmeldePainTop, #topPaneTeilnehmerliste, #topPaneTableView, #topPaneScoreEingabe, #topPaneVeranstaltungAnlegen {
     -fx-background-color: pink;
 }

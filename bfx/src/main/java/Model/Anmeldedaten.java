@@ -181,4 +181,12 @@ public class Anmeldedaten {
         return scoreTag2;
     }
 
+    public int getIdTeilnehmer() {
+        return idTeilnehmer;
+    }
+
+    public void setIdTeilnehmer(int idTeilnehmer) {
+        this.idTeilnehmer = idTeilnehmer;
+    }
+
 }

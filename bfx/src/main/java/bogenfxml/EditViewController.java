@@ -5,15 +5,15 @@
  */
 package bogenfxml;
 
-import Datenklassen.Klasse;
 import Datenklassen.MainData;
-import Datenklassen.Ort;
+import Datenklassen.Turnierteilnahme;
 import Model.Anmeldedaten;
 import Utils.KlasseModel;
 import Utils.PostleitzahlModel;
 import Utils.VereinModel;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +23,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 /**
@@ -83,6 +82,7 @@ public class EditViewController implements Initializable {
     private Button btnNeu;
     @FXML
     private Label label;
+    private Anmeldedaten anmeldeDaten;
 
     /**
      * Initializes the controller class.
@@ -102,13 +102,14 @@ public class EditViewController implements Initializable {
 //        plzModel = new PostleitzahlModel(cbPlzOrt, md);
         klasseModel = new KlasseModel(cbKlasse, md);
         vereinModel = new VereinModel(cbVerein, md);
-        
+
     }
 //    private void fillKlassen() {
 //        cbKlasse.setItems(md.getKlassenListe());
 //    }
 
     public void showTeilnehmerDetails(Anmeldedaten ad) {
+        this.anmeldeDaten = ad;
         if (ad != null) {
             txtVorname.setText(ad.getVorname());
             txtNachname.setText(ad.getNachname());
@@ -149,7 +150,28 @@ public class EditViewController implements Initializable {
         }
     }
 
+    private int getRbGeschlecht() {
+        return rdbMann.isSelected() ? 1 : rdbFrau.isSelected() ? 2 : rdbKind.isSelected() ? 3 : rdbJugend.isSelected() ? 4 : 1;
+    }
+
+    @FXML
+    void cancelHandler(ActionEvent event) {
+
+    }
+
+    @FXML
+    void speichernHandler(ActionEvent event) {
+
+        if (!mainView.getTeilnehmerListeController().getTblTeilnehmerListe().getItems().contains(anmeldeDaten)) {
+            mainView.getTeilnehmerListeController().getTurnierAnmeldungen().add(anmeldeDaten);
+            mainView.getMm().saveTurnierteilnahme(new Turnierteilnahme(anmeldeDaten.getIdTeilnehmer(),
+                    md.getAktuelleVeranstaltung().getIDVeranstaltung(),
+                    getRbGeschlecht(), klasseModel.getSelectedIdKlasse()));
+        }
+    }
+
     void setMainView(MainViewController mainView) {
         this.mainView = mainView;
     }
+
 }

@@ -6,12 +6,16 @@
 package Model;
 
 import Datenklassen.MainData;
+import Datenklassen.Turnierteilnahme;
 import Queries.GeschlechtQueries;
 import Queries.KlasseQueries;
 import Queries.OrtQueries;
 import Queries.TeilnehmerQueries;
+import Queries.TurnierteilnahmeQueries;
+import Queries.VeranstaltungenQueries;
 import Queries.VereinQueries;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +41,7 @@ public class MainModel {
             Logger.getLogger(MainModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void loadPlz(MainData md) {
         try {
             OrtQueries.loadPlzOrt();
@@ -69,17 +74,21 @@ public class MainModel {
             Logger.getLogger(MainModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void loadAktuelleVeranstaltung(MainData md){
+
+    private void loadAktuelleVeranstaltung(MainData md) {
         try {
-            md.getAktuelleVeranstaltung();
+            md.setAktuelleVeranstaltung(VeranstaltungenQueries.getletzteVeranstaltung());
         } catch (SQLException ex) {
             Logger.getLogger(MainModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void saveTurnierteilnahme(){
-        
+
+    public void saveTurnierteilnahme(Turnierteilnahme t) {
+        TurnierteilnahmeQueries.saveTurnierTeilnahme(t);
+    }
+
+    public void saveNeueVeranstaltung(String veranstaltung, LocalDate datum) {
+        VeranstaltungenQueries.saveNeueVeranstaltung(veranstaltung, datum);
     }
 
 }

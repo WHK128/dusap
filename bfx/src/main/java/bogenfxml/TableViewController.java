@@ -6,18 +6,15 @@
 package bogenfxml;
 
 import Datenklassen.MainData;
+import Datenklassen.Turnierteilnahme;
 import Model.Anmeldedaten;
-import Queries.TeilnehmerQueries;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -105,10 +102,13 @@ public class TableViewController implements Initializable {
                 Anmeldedaten selected = (Anmeldedaten) tblTeilnehmer.getSelectionModel().getSelectedItem();
                 if (selected != null) {
                     mainView.getEditViewController().showTeilnehmerDetails(selected);
-                    if (!mainView.getTeilnehmerListeController().getTblTeilnehmerListe().getItems().contains(selected)) {
-                        // Die Idee ist sofort in die Datenbank tblTurnierteilnahme zu schreiben 
-                        // und den gleichen Satz auch in die getTurnierAnmeldungen zu schreiben
-                        mainView.getTeilnehmerListeController().getTurnierAnmeldungen().add(selected);
+                    if (selected.getGeschlecht() > 0 && selected.getKlasse() > 0) {
+                        if (!mainView.getTeilnehmerListeController().getTblTeilnehmerListe().getItems().contains(selected)) {
+                            mainView.getTeilnehmerListeController().getTurnierAnmeldungen().add(selected);
+                            mainView.getMm().saveTurnierteilnahme(new Turnierteilnahme(selected.getIdTeilnehmer(), 
+                                    md.getAktuelleVeranstaltung().getIDVeranstaltung(),
+                                    selected.getGeschlecht(), selected.getKlasse()));
+                        }
                     }
                 }
             }

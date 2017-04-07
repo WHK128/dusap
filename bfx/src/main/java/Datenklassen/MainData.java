@@ -82,8 +82,13 @@ public class MainData {
         return kl.size() > 0 ? kl.get(0).getGeschlecht() : "";
     }
 
-    public void getAktuelleVeranstaltung() throws SQLException {
-        VeranstaltungenQueries.getletzteVeranstaltung();
+    public Veranstaltung getAktuelleVeranstaltung() {
+
+        return aktuelleVeranstaltung;
+    }
+
+    public void setAktuelleVeranstaltung(Veranstaltung aktuelleVeranstaltung) {
+        this.aktuelleVeranstaltung = aktuelleVeranstaltung;
     }
 
 }

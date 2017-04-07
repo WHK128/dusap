@@ -53,6 +53,8 @@ public class MainViewController implements Initializable {
     Parent scoreEingabe;
     MainData md;
     MainModel mm;
+    private VeranstaltungController veranstaltungController;
+    private Parent veranstaltungAnlegen;
 
     /**
      * Initializes the controller class.
@@ -82,7 +84,7 @@ public class MainViewController implements Initializable {
     @FXML
     void handleScoreeingabeAction(ActionEvent event) {
         centerHBox.getChildren().clear();
-         mainPain.setRight(null);
+        mainPain.setRight(null);
         loadTeilnehmerListView();
         loadScoreEingabeView();
         Platform.runLater(() -> {
@@ -101,6 +103,12 @@ public class MainViewController implements Initializable {
 
     @FXML
     void handleTurnierAnlegenAction(ActionEvent event) {
+        centerHBox.getChildren().clear();
+        mainPain.setRight(null);
+        loadVeranstaltungAnlegenView();
+        Platform.runLater(() -> {
+            setVeranstaltungAnlegenView();
+        });
     }
 
     private void loadAnmeldeView() {
@@ -165,6 +173,22 @@ public class MainViewController implements Initializable {
     private void setScoreEingabeView() {
         scoreEingabeController.setMainView(this);
         scoreEingabeController.init(md);
+    }
+
+    private void loadVeranstaltungAnlegenView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Veranstaltung.fxml"));
+            veranstaltungAnlegen = (Parent) loader.load();
+            veranstaltungController = loader.getController();
+            centerHBox.getChildren().add(veranstaltungAnlegen);
+        } catch (IOException ex) {
+            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void setVeranstaltungAnlegenView() {
+        veranstaltungController.setMainView(this);
+        veranstaltungController.init(md);
     }
 
     public EditViewController getEditViewController() {
