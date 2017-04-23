@@ -10,25 +10,47 @@ package Datenklassen;
  * @author Werner
  */
 public class Score {
-    
+
+//  fkTeilnehmer int(11) PK 
+//  fkVeranstaltung int(11) PK 
+//  tage int(11) 
+//  PunkteTag1 int(11) 
+//  10erTag1 int(11) 
+//  8erTag1 int(11) 
+//  5erTag1 int(11) 
+//  PunkteTag2 int(11) 
+//  10erTag2 int(11) 
+//  8erTag2 int(11) 
+//  5erTag2
     private int FKTeilnhemer;
     private int FKVeranstaltung;
-    private int punkte;
-    private int col10er;
-    private int col8er;
-    private int col5er;
-    private int scheibe; // wird nicht verwendet
+    private int tage;
+    private int punkteTag1;
+    private int col10erTag1;
+    private int col8erTag1;
+    private int col5erTag1;
+    private int punkteTag2;
+    private int col10erTag2;
+    private int col8erTag2;
+    private int col5erTag2;
 
     public Score() {
     }
 
-    public Score(int FKTeilnhemer, int FKVeranstaltung, int punkte, int col10er, int col8er, int col5er) {
+    public Score(int FKTeilnhemer, int FKVeranstaltung, int tage,
+            int punkteTag1, int col10erTag1, int col8erTag1, int col5erTag1,
+            int punkteTag2, int col10erTag2, int col8erTag2, int col5erTag2) {
         this.FKTeilnhemer = FKTeilnhemer;
         this.FKVeranstaltung = FKVeranstaltung;
-        this.punkte = punkte;
-        this.col10er = col10er;
-        this.col8er = col8er;
-        this.col5er = col5er;
+        this.tage = tage;
+        this.punkteTag1 = punkteTag1;
+        this.col10erTag1 = col10erTag1;
+        this.col8erTag1 = col8erTag1;
+        this.col5erTag1 = col5erTag1;
+        this.punkteTag2 = punkteTag2;
+        this.col10erTag2 = col10erTag2;
+        this.col8erTag2 = col8erTag2;
+        this.col5erTag2 = col5erTag2;
     }
 
     public int getFKTeilnhemer() {
@@ -47,37 +69,76 @@ public class Score {
         this.FKVeranstaltung = FKVeranstaltung;
     }
 
-   
-
-    public int getPunkte() {
-        return punkte;
+    public int getTage() {
+        return tage;
     }
 
-    public void setPunkte(int punkte) {
-        this.punkte = punkte;
+    public void setTage(int tage) {
+        this.tage = tage;
     }
 
-    public int getCol10er() {
-        return col10er;
+    public int getPunkteTag1() {
+        return punkteTag1;
     }
 
-    public void setCol10er(int col10er) {
-        this.col10er = col10er;
+    public void setPunkteTag1(int punkteTag1) {
+        this.punkteTag1 = punkteTag1;
     }
 
-    public int getCol8er() {
-        return col8er;
+    public int getCol10erTag1() {
+        return col10erTag1;
     }
 
-    public void setCol8er(int col8er) {
-        this.col8er = col8er;
+    public void setCol10erTag1(int col10erTag1) {
+        this.col10erTag1 = col10erTag1;
     }
 
-    public int getCol5er() {
-        return col5er;
+    public int getCol8erTag1() {
+        return col8erTag1;
     }
 
-    public void setCol5er(int col5er) {
-        this.col5er = col5er;
+    public void setCol8erTag1(int col8erTag1) {
+        this.col8erTag1 = col8erTag1;
     }
+
+    public int getCol5erTag1() {
+        return col5erTag1;
+    }
+
+    public void setCol5erTag1(int col5erTag1) {
+        this.col5erTag1 = col5erTag1;
+    }
+
+    public int getPunkteTag2() {
+        return punkteTag2;
+    }
+
+    public void setPunkteTag2(int punkteTag2) {
+        this.punkteTag2 = punkteTag2;
+    }
+
+    public int getCol10erTag2() {
+        return col10erTag2;
+    }
+
+    public void setCol10erTag2(int col10erTag2) {
+        this.col10erTag2 = col10erTag2;
+    }
+
+    public int getCol8erTag2() {
+        return col8erTag2;
+    }
+
+    public void setCol8erTag2(int col8erTag2) {
+        this.col8erTag2 = col8erTag2;
+    }
+
+    public int getCol5erTag2() {
+        return col5erTag2;
+    }
+
+    public void setCol5erTag2(int col5erTag2) {
+        this.col5erTag2 = col5erTag2;
+    }
+
 }

@@ -6,10 +6,12 @@
 package Model;
 
 import Datenklassen.MainData;
+import Datenklassen.Score;
 import Datenklassen.Turnierteilnahme;
 import Queries.GeschlechtQueries;
 import Queries.KlasseQueries;
 import Queries.OrtQueries;
+import Queries.ScoreEingabeQueries;
 import Queries.TeilnehmerQueries;
 import Queries.TurnierteilnahmeQueries;
 import Queries.VeranstaltungenQueries;
@@ -32,6 +34,7 @@ public class MainModel {
         loadPlz(md);
         loadVereine(md);
         loadAktuelleVeranstaltung(md);
+        loadTurnierTeilnehmerListe(md);
     }
 
     private void loadVereine(MainData md) {
@@ -82,6 +85,13 @@ public class MainModel {
             Logger.getLogger(MainModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    private void loadTurnierTeilnehmerListe(MainData md) {
+        try {
+            md.setTurnierTeilnahmeListe(TeilnehmerQueries.getTurnierTeilnehmerAnmeldedaten(md.getAktuelleVeranstaltung().getIDVeranstaltung()));
+        } catch (SQLException ex) {
+            Logger.getLogger(MainModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void saveTurnierteilnahme(Turnierteilnahme t) {
         TurnierteilnahmeQueries.saveTurnierTeilnahme(t);
@@ -90,5 +100,9 @@ public class MainModel {
     public void saveNeueVeranstaltung(String veranstaltung, LocalDate datum) {
         VeranstaltungenQueries.saveNeueVeranstaltung(veranstaltung, datum);
     }
+    
+     public void saveScore(Score score) {
+         ScoreEingabeQueries.saveScore(score);
+     }
 
 }

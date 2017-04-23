@@ -8,6 +8,7 @@ package bogenfxml;
 import Datenklassen.MainData;
 import Datenklassen.Turnierteilnahme;
 import Model.Anmeldedaten;
+import Queries.TurnierteilnahmeQueries;
 import Utils.KlasseModel;
 import Utils.PostleitzahlModel;
 import Utils.VereinModel;

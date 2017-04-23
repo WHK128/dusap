@@ -25,9 +25,16 @@ public class TurnierteilnahmeQueries {
 //    private int FKKlasse;
 //    private int FKVeranstaltung;
     public static void saveTurnierTeilnahme(Turnierteilnahme t) {
-
+//        INSERT INTO <table> (field1, field2, field3, ...) 
+//VALUES ('value1', 'value2','value3', ...)
+//ON DUPLICATE KEY UPDATE
+//field1='value1', field2='value2', field3='value3',
         String statement = "INSERT INTO tblTurnierteilnahme (FKTeilnehmer, FKVeranstaltung, FKGeschlecht, FKKlasse)"
-                + "VALUES (" + t.getFKTeilnhemer() + ", " + t.getFKVeranstaltung() + ", " + t.getFKKlasse() + ", " + t.getFKGeschlecht() + ")";
+                + "VALUES (" + t.getFKTeilnhemer() + ", " + t.getFKVeranstaltung() + ", "
+                + t.getFKGeschlecht() + ", " + t.getFKKlasse() + ")"
+                + " ON DUPLICATE KEY UPDATE "
+                + "FKTeilnehmer = " + t.getFKTeilnhemer() + ", FKVeranstaltung = " + t.getFKVeranstaltung()
+                + ", FKGeschlecht = " + t.getFKGeschlecht() + ", FKKlasse = " + t.getFKKlasse();
 
         mySqlConnect.MySQLConnection.execUpdate(statement);
     }
@@ -42,7 +49,7 @@ public class TurnierteilnahmeQueries {
                     + "JOIN tblTeilnehmer as teil ON teil.IDTeilnehmer = turn.FKTeilnehmer"
                     + "WHERE turn.FKVeranstaltung = " + veranstaltung
                     + "ORDER BY teil.Nachname ASC, teil.Vorname ASC, teil.GebDatum ASC");
-            
+
             while (rs.next()) {
                 Anmeldedaten ad = new Anmeldedaten(
                         rs.getString("IDTeilnehmer") != null ? Integer.valueOf(rs.getString("IDTeilnehmer")) : 0,

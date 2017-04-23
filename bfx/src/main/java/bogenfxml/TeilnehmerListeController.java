@@ -55,6 +55,7 @@ public class TeilnehmerListeController implements Initializable {
     private TableColumn<Anmeldedaten, Integer> colScoreTag2;
 
     ObservableList<Anmeldedaten> turnierAnmeldungen;
+    private Boolean score;
 
     /**
      * Initializes the controller class.
@@ -67,67 +68,69 @@ public class TeilnehmerListeController implements Initializable {
     void setMainView(MainViewController mn) {
         this.mn = mn;
     }
+
     /**
-    * 
-    * @param score 
-    * score ist der Parameter für die Score Spalten, ob sie angezeigt werden oder nicht
-    * 
-    */
+     *
+     * @param score score ist der Parameter für die Score Spalten, ob sie
+     * angezeigt werden oder nicht
+     *
+     */
     void initTable(Boolean score) {
+        this.score = score;
         colVorname.setCellValueFactory(cellData -> cellData.getValue().vornameProperty());
         colNachname.setCellValueFactory(cellData -> cellData.getValue().nachnameProperty());
         colKlasse.setCellValueFactory(cellData -> cellData.getValue().klasseProperty().asObject());
         colGeschlecht.setCellValueFactory(cellData -> cellData.getValue().geschlechtProperty().asObject());
         colTage.setCellValueFactory(cellData -> cellData.getValue().tageProperty().asObject());
-        
+
         colScoreTag1.setVisible(false);
         colScoreTag2.setVisible(false);
-        
-        if(score){
-        colScoreTag1.setVisible(true);
-        colScoreTag2.setVisible(true);
-        colScoreTag1.setCellValueFactory(cellData -> cellData.getValue().scoreTag1Property().asObject());
-        colScoreTag2.setCellValueFactory(cellData -> cellData.getValue().scoreTag2Property().asObject());
 
-        colKlasse.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
-            TableCell<Anmeldedaten, Integer> cell = new TableCell<Anmeldedaten, Integer>() {
-                @Override
-                public void updateItem(Integer item, boolean empty) {
-                    if (item != null) {
-                        setText(mn.getMd().getKlasse(item));
-                    }
-                }
-            };
-            return cell;
-        });
-        colGeschlecht.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
-            TableCell<Anmeldedaten, Integer> cell = new TableCell<Anmeldedaten, Integer>() {
-                @Override
-                public void updateItem(Integer item, boolean empty) {
-                    if (item != null) {
-                        setText(mn.getMd().getGeschlecht(item));
-                    }
-                }
-            };
-            return cell;
-        });
-        Callback<TableColumn<Anmeldedaten, Integer>, TableCell<Anmeldedaten, Integer>> cellFactory
-                = (TableColumn<Anmeldedaten, Integer> param) -> new EditingCell();
+        if (score) {
+            colScoreTag1.setVisible(true);
+            colScoreTag2.setVisible(true);
+            colScoreTag1.setCellValueFactory(cellData -> cellData.getValue().scoreTag1Property().asObject());
+            colScoreTag2.setCellValueFactory(cellData -> cellData.getValue().scoreTag2Property().asObject());
 
-        colScoreTag1.setCellFactory(cellFactory);
-        colScoreTag1.setOnEditCommit(
-                (TableColumn.CellEditEvent<Anmeldedaten, Integer> t) -> {
-                    ((Anmeldedaten) t.getTableView().getItems()
-                    .get(t.getTablePosition().getRow()))
-                    .setScoreTag1(t.getNewValue());
-                });
-        colScoreTag2.setCellFactory(cellFactory);
-        colScoreTag2.setOnEditCommit(
-                (TableColumn.CellEditEvent<Anmeldedaten, Integer> t) -> {
-                    ((Anmeldedaten) t.getTableView().getItems()
-                    .get(t.getTablePosition().getRow()))
-                    .setScoreTag1(t.getNewValue());
-                });
+            colKlasse.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
+                TableCell<Anmeldedaten, Integer> cell = new TableCell<Anmeldedaten, Integer>() {
+                    @Override
+                    public void updateItem(Integer item, boolean empty) {
+                        if (item != null) {
+                            setText(mn.getMd().getKlasse(item));
+                        }
+                    }
+                };
+                return cell;
+            });
+            colGeschlecht.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
+                TableCell<Anmeldedaten, Integer> cell = new TableCell<Anmeldedaten, Integer>() {
+                    @Override
+                    public void updateItem(Integer item, boolean empty) {
+                        if (item != null) {
+                            setText(mn.getMd().getGeschlecht(item));
+                        }
+                    }
+                };
+                return cell;
+            });
+            Callback<TableColumn<Anmeldedaten, Integer>, TableCell<Anmeldedaten, Integer>> cellFactory
+                    = (TableColumn<Anmeldedaten, Integer> param) -> new EditingCell();
+
+            colScoreTag1.setCellFactory(cellFactory);
+            colScoreTag1.setOnEditCommit(
+                    (TableColumn.CellEditEvent<Anmeldedaten, Integer> t) -> {
+                        ((Anmeldedaten) t.getTableView().getItems()
+                                .get(t.getTablePosition().getRow()))
+                                .setScoreTag1(t.getNewValue());
+                    });
+            colScoreTag2.setCellFactory(cellFactory);
+            colScoreTag2.setOnEditCommit(
+                    (TableColumn.CellEditEvent<Anmeldedaten, Integer> t) -> {
+                        ((Anmeldedaten) t.getTableView().getItems()
+                                .get(t.getTablePosition().getRow()))
+                                .setScoreTag1(t.getNewValue());
+                    });
 
 //        colScoreTag1.setCellFactory((TableColumn<Anmeldedaten, Integer> param) -> {
 //            TableCell<Anmeldedaten, Integer> cell;
@@ -159,13 +162,20 @@ public class TeilnehmerListeController implements Initializable {
 //        });
         }
         turnierAnmeldungen = FXCollections.observableArrayList();
+        turnierAnmeldungen = mn.getMd().getTurnierTeilnahmeListe();
         fillTable("");
     }
 
     private void fillTable(String suche) {
-        FilteredList<Anmeldedaten> fl = turnierAnmeldungen.filtered(row
-                -> row.getNachname().toLowerCase().contains(suche.toLowerCase())
-                || row.getVorname().toLowerCase().contains(suche.toLowerCase()));
+                    FilteredList<Anmeldedaten> fl;
+        if (score) {
+fl = turnierAnmeldungen.filtered(row -> row.getNachname().toLowerCase().contains(suche.toLowerCase())
+                    || row.getVorname().toLowerCase().contains(suche.toLowerCase()));
+        } else {
+            fl = turnierAnmeldungen.filtered(row
+                    -> row.getNachname().toLowerCase().contains(suche.toLowerCase())
+                    || row.getVorname().toLowerCase().contains(suche.toLowerCase()));
+        }
         tblTeilnehmerListe.setItems(fl);
     }
 
@@ -173,8 +183,8 @@ public class TeilnehmerListeController implements Initializable {
         // Suchfeld Suche bei der Eingabe
         suchFeld.textProperty().addListener((ObservableValue<? extends String> observable,
                 String oldValue, String newValue) -> {
-                    fillTable(suchFeld.getText());
-                });
+            fillTable(suchFeld.getText());
+        });
         // SingleClick
         tblTeilnehmerListe.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue)
@@ -189,15 +199,15 @@ public class TeilnehmerListeController implements Initializable {
 //            }
 //        });
     }
-private String jahrZahl = "";
+    private String jahrZahl = "";
+
     class EditingCell extends TableCell<Anmeldedaten, Integer> {
 
         private TextField textField;
 
         private EditingCell() {
-        
 
-        textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
                     if (textField.getText().matches("[0-9]{4}")) {
                         jahrZahl = textField.getText();
@@ -208,7 +218,8 @@ private String jahrZahl = "";
                         textField.requestFocus();
                     }
                 }
-            });}
+            });
+        }
 //        @Override
 //        public void startEdit() {
 //            if (!isEmpty()) {
@@ -248,7 +259,6 @@ private String jahrZahl = "";
 //                        }
 //                    }
 //                });
-
         @Override
         public void updateItem(Integer item, boolean empty) {
             super.updateItem(item, empty);
@@ -286,7 +296,7 @@ private String jahrZahl = "";
             textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
 //            textField.setOnAction((e) -> commitEdit(Integer.valueOf(textField.getText())));
             textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if(!newValue.equals("")) {
+                if (!newValue.equals("")) {
                     textField.setText(validDigit(textField.getText()));
                 }
             });

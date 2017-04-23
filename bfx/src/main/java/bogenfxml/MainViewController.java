@@ -69,6 +69,8 @@ public class MainViewController implements Initializable {
 
     @FXML
     void handleAnmeldungAction(ActionEvent event) {
+        setDisableButtons(false);
+        btnAnmeldung.setDisable(true);
         centerHBox.getChildren().clear();
         mainPain.setRight(null);
         loadAnmeldeView();
@@ -83,6 +85,8 @@ public class MainViewController implements Initializable {
 
     @FXML
     void handleScoreeingabeAction(ActionEvent event) {
+        setDisableButtons(false);
+        btnScoreeingabe.setDisable(true);
         centerHBox.getChildren().clear();
         mainPain.setRight(null);
         loadTeilnehmerListView();
@@ -95,20 +99,34 @@ public class MainViewController implements Initializable {
 
     @FXML
     void handleAuswertungAction(ActionEvent event) {
+        setDisableButtons(false);
+        btnAuswertung.setDisable(true);
     }
 
     @FXML
     void handleTeilnehmerlisteAction(ActionEvent event) {
+        setDisableButtons(false);
+        btnTeilnehmerliste.setDisable(true);
     }
 
     @FXML
     void handleTurnierAnlegenAction(ActionEvent event) {
+        setDisableButtons(false);
+        btnTurnierAnlegen.setDisable(true);
         centerHBox.getChildren().clear();
         mainPain.setRight(null);
         loadVeranstaltungAnlegenView();
         Platform.runLater(() -> {
             setVeranstaltungAnlegenView();
         });
+    }
+
+    void setDisableButtons(boolean b) {
+        btnAnmeldung.setDisable(b);
+        btnAuswertung.setDisable(b);
+        btnScoreeingabe.setDisable(b);
+        btnTeilnehmerliste.setDisable(b);
+        btnTurnierAnlegen.setDisable(b);
     }
 
     private void loadAnmeldeView() {
@@ -180,13 +198,13 @@ public class MainViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Veranstaltung.fxml"));
             veranstaltungAnlegen = (Parent) loader.load();
             veranstaltungController = loader.getController();
-            centerHBox.getChildren().add(veranstaltungAnlegen);
         } catch (IOException ex) {
             Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void setVeranstaltungAnlegenView() {
+            centerHBox.getChildren().add(veranstaltungAnlegen);
         veranstaltungController.setMainView(this);
         veranstaltungController.init(md);
     }
@@ -203,12 +221,24 @@ public class MainViewController implements Initializable {
         return teilnehmerListeController;
     }
 
+    public VeranstaltungController getVeranstaltungController() {
+        return veranstaltungController;
+    }
+
+    public Parent getVeranstaltungAnlegen() {
+        return veranstaltungAnlegen;
+    }
+
     public MainData getMd() {
         return md;
     }
 
     public MainModel getMm() {
         return mm;
+    }
+
+    public HBox getCenterHBox() {
+        return centerHBox;
     }
 
 }

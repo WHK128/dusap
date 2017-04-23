@@ -13,12 +13,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import Datenklassen.MainData;
+import Datenklassen.Score;
 import Model.Anmeldedaten;
 import Utils.KlasseModel;
 import Utils.PostleitzahlModel;
 import Utils.VereinModel;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 /**
@@ -30,14 +32,14 @@ public class ScoreEingabeController implements Initializable {
 
     private MainData md;
     MainViewController mainView;
-    
+
     @FXML
     private HBox topPaneScoreEingabe;
     @FXML
     private TextField txtVorname;
     @FXML
     private TextField txtNachname;
-      @FXML
+    @FXML
     private ComboBox cbVerein;
     private VereinModel vereinModel;
     @FXML
@@ -87,6 +89,7 @@ public class ScoreEingabeController implements Initializable {
     @FXML
     private TextField tag2_5er;
 
+    private Anmeldedaten ad;
 
     /**
      * Initializes the controller class.
@@ -94,9 +97,9 @@ public class ScoreEingabeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
-   void init(MainData md) {
+    void init(MainData md) {
         this.md = md;
         initFields();
 //        fillKlassen();
@@ -106,7 +109,7 @@ public class ScoreEingabeController implements Initializable {
         plzModel = new PostleitzahlModel(cbPlzOrt, md);
         klasseModel = new KlasseModel(cbKlasse, md);
         vereinModel = new VereinModel(cbVerein, md);
-        
+
     }
 //    private void fillKlassen() {
 //        cbKlasse.setItems(md.getKlassenListe());
@@ -114,6 +117,7 @@ public class ScoreEingabeController implements Initializable {
 
     public void showTeilnehmerDetails(Anmeldedaten ad) {
         if (ad != null) {
+            this.ad = ad;
             txtVorname.setText(ad.getVorname());
             txtNachname.setText(ad.getNachname());
 //            plzModel.setSelected(ad.getPlz());
@@ -153,7 +157,33 @@ public class ScoreEingabeController implements Initializable {
         }
     }
 
+    private Score readFields() {
+        // public Score(int FKTeilnhemer, int FKVeranstaltung, int punkte, int col10er, int col8er, int col5er) {
+        return new Score(ad.getIdTeilnehmer(),
+                md.getAktuelleVeranstaltung().getIDVeranstaltung(),
+                rdbZweiTage.isSelected() ? 2 : 1,
+                Integer.valueOf(tag1Score.getText()),
+                Integer.valueOf(tag1_10er.getText()),
+                Integer.valueOf(tag1_8er.getText()),
+                Integer.valueOf(tag1_5er.getText()),
+                Integer.valueOf(tag2Score.getText()),
+                Integer.valueOf(tag2_10er.getText()),
+                Integer.valueOf(tag2_8er.getText()),
+                Integer.valueOf(tag2_5er.getText())
+        );
+    }
+
     void setMainView(MainViewController mainView) {
         this.mainView = mainView;
+    }
+
+    @FXML
+    void cancelHandler(ActionEvent event) {
+        showTeilnehmerDetails(null);
+    }
+
+    @FXML
+    void speichernHandler(ActionEvent event) {
+        mainView.getMm().saveScore(readFields());
     }
 }

@@ -36,8 +36,17 @@ public class VeranstaltungenQueries {
     }
 
     public static void saveNeueVeranstaltung(String veranstaltung, LocalDate datum) {
+        
+//        INSERT INTO <table> (field1, field2, field3, ...) 
+//VALUES ('value1', 'value2','value3', ...)
+//ON DUPLICATE KEY UPDATE
+//field1='value1', field2='value2', field3='value3',
+
+
         String statement = "INSERT INTO tblveranstaltung (Veranstaltung, Veranstaltungsdatum)"
-                + "VALUES (" + veranstaltung + ", " + datum + ")";
+                + " VALUES ('" + veranstaltung + "', '" + datum + "')"
+                + " ON DUPLICATE KEY UPDATE "
+                + "Veranstaltung = '" + veranstaltung + "', Veranstaltungsdatum = '" + datum + "'";
 
         mySqlConnect.MySQLConnection.execUpdate(statement);
     }

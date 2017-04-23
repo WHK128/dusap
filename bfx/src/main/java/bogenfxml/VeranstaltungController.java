@@ -6,6 +6,7 @@
 package bogenfxml;
 
 import Datenklassen.MainData;
+import Utils.AlertBox;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -55,12 +57,18 @@ public class VeranstaltungController implements Initializable {
 
     @FXML
     void cancelHandler(ActionEvent event) {
-
+        closeView();
     }
 
     @FXML
     void speichernHandler(ActionEvent event) {
-        mainView.getMm().saveNeueVeranstaltung(txtTurnierName.getText().trim(), dpTurnierDatum.getValue());
+        String text = txtTurnierName.getText().trim();
+        if (!text.isEmpty()) {
+            mainView.getMm().saveNeueVeranstaltung(txtTurnierName.getText().trim(), dpTurnierDatum.getValue());
+            closeView();
+        } else {
+            AlertBox ap = new AlertBox(Alert.AlertType.ERROR, "Veranstaltung anlegen", "", "Sie müssen einen Text eingeben!");
+        }
     }
 
     void setMainView(MainViewController mainView) {
@@ -69,6 +77,11 @@ public class VeranstaltungController implements Initializable {
 
     void init(MainData md) {
         this.md = md;
+    }
+
+    private void closeView() {
+        mainView.getCenterHBox().getChildren().clear();
+        mainView.setDisableButtons(false);
     }
 
 }

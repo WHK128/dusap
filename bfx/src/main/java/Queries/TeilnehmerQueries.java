@@ -47,8 +47,43 @@ public class TeilnehmerQueries {
                         rs.getDate("GebDatum") != null ? rs.getDate("GebDatum") : new Date(),
                         rs.getString("FKGeschlecht") != null ? Integer.valueOf(rs.getString("FKGeschlecht")) : 0,
                         rs.getString("FKKlasse") != null ? Integer.valueOf(rs.getString("FKKlasse")) : 0,
-                        rs.getString("FKVerein") != null ? Integer.valueOf(rs.getString("FKVerein")) : 0,0,
-                        0,0);
+                        rs.getString("FKVerein") != null ? Integer.valueOf(rs.getString("FKVerein")) : 0, 0,
+                        0, 0);
+                results.add(ad);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+        // http://stackoverflow.com/questions/17576080/store-rows-of-resultset-in-array-of-strings
+
+        return results;
+    }
+
+    public static ObservableList<Anmeldedaten> getTurnierTeilnehmerAnmeldedaten(int fkVeranstaltung) throws SQLException {
+        ObservableList<Anmeldedaten> results = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = mySqlConnect.MySQLConnection.execQuery("SELECT IDTeilnehmer, "
+                    + "Vorname,  Nachname, Email, FKVerein, GebDatum, "
+                    + "FKGeschlecht, FKKlasse, s.tage, s.PunkteTag1, s.PunkteTag2"
+                    + " FROM tblTeilnehmer AS t"
+                    + " JOIN tblscore AS s ON t.IDTeilnehmer = s.fkTeilnehmer"
+                    + " WHERE FKVeranstaltung = " + fkVeranstaltung
+                    + " ORDER BY Nachname ASC, Vorname ASC, GebDatum ASC");
+            while (rs.next()) {
+
+                Anmeldedaten ad = new Anmeldedaten(
+                        rs.getString("IDTeilnehmer") != null ? Integer.valueOf(rs.getString("IDTeilnehmer")) : 0,
+                        rs.getString("Vorname") != null ? rs.getString("Vorname") : "",
+                        rs.getString("Nachname") != null ? rs.getString("Nachname") : "",
+                        rs.getString("Email") != null ? rs.getString("Email") : "",
+                        rs.getDate("GebDatum") != null ? rs.getDate("GebDatum") : new Date(),
+                        rs.getString("FKGeschlecht") != null ? Integer.valueOf(rs.getString("FKGeschlecht")) : 0,
+                        rs.getString("FKKlasse") != null ? Integer.valueOf(rs.getString("FKKlasse")) : 0,
+                        rs.getString("FKVerein") != null ? Integer.valueOf(rs.getString("FKVerein")) : 0,
+                        rs.getString("s.tage") != null ? Integer.valueOf(rs.getString("s.tage")) : 0,
+                        rs.getString("s.PunkteTag1") != null ? Integer.valueOf(rs.getString("s.PunkteTag1")) : 0,
+                        rs.getString("s.PunkteTag2") != null ? Integer.valueOf(rs.getString("s.PunkteTag2")) : 0
+                );
                 results.add(ad);
             }
         } catch (SQLException e) {

@@ -50,7 +50,7 @@
                </GridPane.margin></DatePicker>
             <HBox alignment="CENTER_RIGHT" spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button id="btnCancel" fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelHandler" text="Abbrechen" />
+                  <Button id="btnCancel" fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#cancelHandler" text="Abbrechen" />
                   <Button id="btnSpeichern" fx:id="btnSpeichern" mnemonicParsing="false" onAction="#speichernHandler" text="Speichern" />
                </children>
             </HBox>

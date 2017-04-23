@@ -1,6 +1,7 @@
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Datenklassen\Teilnehmer.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\bogenfxml\TableViewController.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Datenklassen\Score.java
+C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Utils\AlertBox.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Utils\FxComboboxModel.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Datenklassen\Ort.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Queries\VereinQueries.java
@@ -35,6 +36,7 @@ C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\bogenfxml\EditViewContr
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Queries\GeschlechtQueries.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\mySqlConnect\NewClass.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\bogenfxml\TeilnehmerListeController.java
+C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Queries\ScoreEingabeQueries.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Model\Anmeldedaten.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Utils\DateUtil.java
 C:\Users\Werner\Documents\GitHub\dusap\bfx\src\main\java\Queries\TeilnehmerQueries.java

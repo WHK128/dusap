@@ -58,6 +58,22 @@
             <Label text="Vorname" />
             <TextField id="txtVorname" fx:id="txtVorname" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="7" />
             <TextField id="txtNachname" fx:id="txtNachname" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="1" />
+            <Label text="10" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="10" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label text="8" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label text="8" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label text="5" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Label text="5" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Label text="Score 1. Tag" GridPane.rowIndex="2" />
+            <Label text="Score 2. Tag" GridPane.rowIndex="3" />
+            <TextField id="tag1Score" fx:id="tag1Score" alignment="TOP_RIGHT" promptText="Score" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField id="tag1_10er" fx:id="tag1_10er" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField id="tag1_8er" fx:id="tag1_8er" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <TextField id="tag1_5er" fx:id="tag1_5er" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <TextField id="tag2Score" fx:id="tag2Score" alignment="CENTER_RIGHT" promptText="Score" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField id="tag2_10er" fx:id="tag2_10er" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField id="tag2_8er" fx:id="tag2_8er" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <TextField id="tag2_5er" fx:id="tag2_5er" GridPane.columnIndex="7" GridPane.rowIndex="3" />
             <ComboBox id="cbVerein" fx:id="cbVerein" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="4" />
             <TextField fx:id="email" prefHeight="25.0" prefWidth="261.0" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="5" />
             <Label text="Nachname" GridPane.rowIndex="1" />
@@ -81,26 +97,11 @@
             <RadioButton id="rdbMann" fx:id="rdbMann" mnemonicParsing="false" selected="true" text="Mann" toggleGroup="$geschlecht" GridPane.rowIndex="6" />
             <HBox alignment="TOP_RIGHT" GridPane.columnSpan="8" GridPane.rowIndex="10">
                <children>
-                  <Button id="btnSpeichern" fx:id="btnSpeichern" text="Speichern" />
-                  <Button id="btnAbbrechen" fx:id="btnAbbrechen" text="Abbrechen" />
+                  <Button id="btnSpeichern" fx:id="btnSpeichern" onAction="#speichernHandler" text="Speichern" />
+                  <Button id="btnAbbrechen" fx:id="btnAbbrechen" onAction="#cancelHandler" text="Abbrechen" />
                </children>
             </HBox>
-            <Label text="Score 1. Tag" GridPane.rowIndex="2" />
-            <Label text="Score 2. Tag" GridPane.rowIndex="3" />
-            <TextField id="tag1Score" fx:id="tag1Score" alignment="TOP_RIGHT" promptText="Score" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField id="tag2Score" fx:id="tag2Score" alignment="CENTER_RIGHT" promptText="Score" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="10" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label text="10" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label text="8" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Label text="8" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Label text="5" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-            <Label text="5" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <TextField id="tag1_10er" fx:id="tag1_10er" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField id="tag2_10er" fx:id="tag2_10er" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField id="tag1_8er" fx:id="tag1_8er" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <TextField id="tag2_8er" fx:id="tag2_8er" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <TextField id="tag1_5er" fx:id="tag1_5er" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-            <TextField id="tag2_5er" fx:id="tag2_5er" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            
          </children>
          <BorderPane.margin>
             <Insets left="5.0" />

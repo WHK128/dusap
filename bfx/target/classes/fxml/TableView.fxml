@@ -31,7 +31,6 @@
                   <columns>
                       <TableColumn id="colVorname" fx:id="colVorname" prefWidth="150.0" text="Vorname" />
                       <TableColumn id="colNachname" fx:id="colNachname" prefWidth="150.0" text="Nachname" />
-                      <TableColumn id="colVerein" fx:id="colVerein" prefWidth="84.0" text="Verein" />
                   </columns>
               </TableView>
          </children>

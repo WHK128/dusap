@@ -4,8 +4,10 @@ Queries\OrtQueries.class
 Utils\SelectKeyComboBoxListener.class
 bogenfxml\TableViewController.class
 Utils\SelectKeyComboBoxListener$2.class
+Utils\AlertBox.class
 bogenfxml\BogenFxml.class
 bogenfxml\FXMLDocumentController.class
+Queries\ScoreEingabeQueries.class
 mySqlConnect\MySQLConnection.class
 bogenfxml\sqle.class
 Queries\TurnierteilnahmeQueries.class

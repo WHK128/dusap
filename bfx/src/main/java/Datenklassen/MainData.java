@@ -20,6 +20,7 @@ public class MainData {
 
     ObservableList<Klasse> klassenListe;
     ObservableList<Anmeldedaten> anmeldeDatenListe;
+    ObservableList<Anmeldedaten> turnierTeilnahmeListe;
     ObservableList<Geschlecht> geschlechtList;
     ObservableList<Ort> plzList;
     ObservableList<Verein> vereineList;
@@ -55,6 +56,14 @@ public class MainData {
 
     public void setAnmeldeDatenListe(ObservableList<Anmeldedaten> anmeldeDatenListe) {
         this.anmeldeDatenListe = anmeldeDatenListe;
+    }
+
+    public ObservableList<Anmeldedaten> getTurnierTeilnahmeListe() {
+        return turnierTeilnahmeListe;
+    }
+
+    public void setTurnierTeilnahmeListe(ObservableList<Anmeldedaten> turnierTeilnahmeListe) {
+        this.turnierTeilnahmeListe = turnierTeilnahmeListe;
     }
 
     public ObservableList<Geschlecht> getGeschlechtList() {
