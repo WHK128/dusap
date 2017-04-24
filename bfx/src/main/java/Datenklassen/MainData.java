@@ -6,9 +6,6 @@
 package Datenklassen;
 
 import Model.Anmeldedaten;
-import Queries.VeranstaltungenQueries;
-import java.sql.SQLException;
-import java.util.HashMap;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 

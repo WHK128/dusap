@@ -62,15 +62,16 @@ public class TeilnehmerQueries {
     public static ObservableList<Anmeldedaten> getTurnierTeilnehmerAnmeldedaten(int fkVeranstaltung) throws SQLException {
         ObservableList<Anmeldedaten> results = FXCollections.observableArrayList();
         try {
-            ResultSet rs = mySqlConnect.MySQLConnection.execQuery("SELECT IDTeilnehmer, "
-                    + "Vorname,  Nachname, Email, FKVerein, GebDatum, "
-                    + "FKGeschlecht, FKKlasse, s.tage, s.PunkteTag1, s.PunkteTag2"
+            ResultSet rs = mySqlConnect.MySQLConnection.execQuery("SELECT t.IDTeilnehmer, "
+                    + "t.Vorname, t.Nachname, t.Email, t.FKVerein, t.GebDatum, "
+                    + "t.FKGeschlecht, t.FKKlasse, s.tage, s.PunkteTag1, s.PunkteTag2"
                     + " FROM tblTeilnehmer AS t"
-                    + " JOIN tblscore AS s ON t.IDTeilnehmer = s.fkTeilnehmer"
-                    + " WHERE FKVeranstaltung = " + fkVeranstaltung
-                    + " ORDER BY Nachname ASC, Vorname ASC, GebDatum ASC");
+                    + " LEFT JOIN tblscore AS s ON t.IDTeilnehmer = s.fkTeilnehmer"
+                    + " LEFT JOIN tblturnierteilnahme AS tt ON t.IDTeilnehmer = tt.FKTeilnehmer"
+                    + " WHERE tt.FKVeranstaltung = " + fkVeranstaltung
+                    + " ORDER BY t.Nachname ASC, t.Vorname ASC, t.GebDatum ASC");
+            
             while (rs.next()) {
-
                 Anmeldedaten ad = new Anmeldedaten(
                         rs.getString("IDTeilnehmer") != null ? Integer.valueOf(rs.getString("IDTeilnehmer")) : 0,
                         rs.getString("Vorname") != null ? rs.getString("Vorname") : "",
