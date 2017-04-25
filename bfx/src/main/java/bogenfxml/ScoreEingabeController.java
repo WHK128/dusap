@@ -44,9 +44,9 @@ public class ScoreEingabeController implements Initializable {
     private VereinModel vereinModel;
     @FXML
     private TextField email;
-    @FXML
-    private ComboBox cbPlzOrt;
-    private PostleitzahlModel plzModel;
+//    @FXML
+//    private ComboBox cbPlzOrt;
+//    private PostleitzahlModel plzModel;
     @FXML
     private ComboBox cbKlasse;
     private KlasseModel klasseModel;
@@ -106,7 +106,7 @@ public class ScoreEingabeController implements Initializable {
     }
 
     void initFields() {
-        plzModel = new PostleitzahlModel(cbPlzOrt, md);
+//        plzModel = new PostleitzahlModel(cbPlzOrt, md);
         klasseModel = new KlasseModel(cbKlasse, md);
         vereinModel = new VereinModel(cbVerein, md);
 
@@ -131,7 +131,7 @@ public class ScoreEingabeController implements Initializable {
         } else {
             txtVorname.setText("");
             txtNachname.setText("");
-            cbPlzOrt.getSelectionModel().select(0);
+//            cbPlzOrt.getSelectionModel().select(0);
             cbVerein.getSelectionModel().select(0);
             email.setText("");
             cbKlasse.getSelectionModel().select(0);

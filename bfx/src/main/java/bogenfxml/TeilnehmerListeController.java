@@ -5,6 +5,7 @@
  */
 package bogenfxml;
 
+import Datenklassen.Score;
 import Model.Anmeldedaten;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +13,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -19,6 +22,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
@@ -167,9 +172,9 @@ public class TeilnehmerListeController implements Initializable {
     }
 
     private void fillTable(String suche) {
-                    FilteredList<Anmeldedaten> fl;
+        FilteredList<Anmeldedaten> fl;
         if (score) {
-fl = turnierAnmeldungen.filtered(row -> row.getNachname().toLowerCase().contains(suche.toLowerCase())
+            fl = turnierAnmeldungen.filtered(row -> row.getNachname().toLowerCase().contains(suche.toLowerCase())
                     || row.getVorname().toLowerCase().contains(suche.toLowerCase()));
         } else {
             fl = turnierAnmeldungen.filtered(row
@@ -179,6 +184,7 @@ fl = turnierAnmeldungen.filtered(row -> row.getNachname().toLowerCase().contains
         tblTeilnehmerListe.setItems(fl);
     }
 
+    
     void addListener() {
         // Suchfeld Suche bei der Eingabe
         suchFeld.textProperty().addListener((ObservableValue<? extends String> observable,
@@ -198,6 +204,18 @@ fl = turnierAnmeldungen.filtered(row -> row.getNachname().toLowerCase().contains
 //                }
 //            }
 //        });
+tblTeilnehmerListe.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    @Override
+    public void handle(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER)  {
+            Anmeldedaten row = (Anmeldedaten) tblTeilnehmerListe.getSelectionModel().getSelectedItem();
+//            int FKTeilnhemer, int FKVeranstaltung, int tage,
+//            int punkteTag1, int col10erTag1, int col8erTag1, int col5erTag1,
+//            int punkteTag2, int col10erTag2, int col8erTag2, int col5erTag2
+//           Score score = new Score(row.getIdTeilnehmer(), , , row., 0, 0, 0, 0, 0, 0, 0)
+        }
+    }
+});
     }
     private String jahrZahl = "";
 
@@ -206,7 +224,7 @@ fl = turnierAnmeldungen.filtered(row -> row.getNachname().toLowerCase().contains
         private TextField textField;
 
         private EditingCell() {
-
+            textField = new TextField("");
             textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
                     if (textField.getText().matches("[0-9]{4}")) {
